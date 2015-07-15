@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UrlSac</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  </head>
+<body>
+<% if notice %>
+  <div class="alert alert-success">
+    <p id="notice" ><%= notice %></p> 
+    </div>
+<% elsif alert %>
+  <div class="alert alert-danger">
+    <p id="alert" ><%= alert %></p> 
+    </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <li class="active">
+    <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+  </li>
+  <li class="active">
+    <%= link_to "Update Details", edit_user_registration_path %>
+  </li>
+
+<% else %>
+  <li class="active">
+    <%= link_to "Log in", new_user_session_path %>
+  </li>
+  <li class="active">
+    <%= link_to "Register", new_user_registration_path %>
+  </li>
+<% end %>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

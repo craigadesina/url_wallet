@@ -14,6 +14,7 @@ gem 'devise'
 gem 'pundit'
 gem 'figaro'
 gem 'faker'
+gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library

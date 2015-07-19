@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  post :incoming, to: 'incoming#create'
+
+  get :email, to: 'users#email'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -4,42 +4,32 @@ class IncomingController < ApplicationController
   skip_before_action :authenticate_user!
   
   def create
-     # Take a look at these in your server logs
-     # to get a sense of what you're dealing with.
-     #puts "INCOMING PARAMS HERE: #{params}"
-
-     #puts "hello #{params[:sender]} this is about #{params[:subject]}"
-
-    # You put the message-splitting and business
-    # magic here.
-     # Find the user by using params[:sender]
+    unless params[:sender] == ENV['MAILGUN_SMTP_LOGIN']
+      @user = User.find_by(email: params[:sender])
+      create_new_user(@user, sender)
+    else
      @user = User.find_by(email: params[:from])
-
-     if @user.nil?
-      @user = User.new(email: params[:from], password: params[:from])
-      @user.skip_confirmation!
-      @user.save!
+      create_new_user(@user, from)
     end
-      
-      # Find the topic by using params[:subject]
+
+    # Find the topic by using params[:subject]
     @topic = @user.topics.find_or_create_by(title: params[:subject])
      
      # Assign the url to a variable after retreiving it from params["body-plain"]
      @url = @topic.bookmarks.find_or_create_by(url: params["body-plain"])
-     
-     # Check if user is nil, if so, create and save a new user
     
-
-     # Check if the topic is nil, if so, create and save a new topic
-     #if @topic.nil?
-      #@topic = @user.topics.create(title: params[:subject])
-     #end
-
-     # Now that you're sure you have a valid user and topic, build and save a new bookmark
-
     # Assuming all went well.
     render :text => "OK"
     #head 200
   end
-  #render "parambs"
+
+  private
+
+  def create_new_user(user, handle)
+    if user.nil?
+        user = User.new(email: params[:handle], password: params[:handle])
+        user.skip_confirmation!
+        user.save!
+    end
+  end
 end

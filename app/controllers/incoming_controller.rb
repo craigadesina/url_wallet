@@ -1,11 +1,12 @@
 class IncomingController < ApplicationController
    
   skip_before_action :verify_authenticity_token, only: [:create]
-
+  skip_before_action :authenticate_user!
+  
   def create
      # Take a look at these in your server logs
      # to get a sense of what you're dealing with.
-     puts "INCOMING PARAMS HERE: #{params}"
+     #puts "INCOMING PARAMS HERE: #{params}"
 
     # You put the message-splitting and business
     # magic here.
@@ -20,7 +21,8 @@ class IncomingController < ApplicationController
      # Now that you're sure you have a valid user and topic, build and save a new bookmark
 
     # Assuming all went well.
+    render :text => "OK"
     head 200
   end
-  render "parambs"
+  #render "parambs"
 end

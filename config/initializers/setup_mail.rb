@@ -10,3 +10,7 @@ if Rails.env.development? || Rails.env.production?
     enable_starttls_auto: true
   }
 end
+
+if Rails.env.development?
+  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
+end

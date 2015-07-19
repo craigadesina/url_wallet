@@ -14,6 +14,11 @@ class IncomingController < ApplicationController
     # magic here.
      # Find the user by using params[:sender]
      @user = User.find_by(email: params[:from])
+
+     if @user.nil?
+      @user = User.new(email: params[:from], password: params[:from])
+      @user.save!
+    end
       
       # Find the topic by using params[:subject]
     @topic = @user.topics.find_or_create_by(title: params[:subject])
@@ -22,10 +27,7 @@ class IncomingController < ApplicationController
      @url = @topic.bookmarks.find_or_create_by(url: params["body-plain"])
      
      # Check if user is nil, if so, create and save a new user
-    if @user.nil?
-      @user = User.new(email: params[:from])
-      @user.save!
-    end
+    
 
      # Check if the topic is nil, if so, create and save a new topic
      #if @topic.nil?

@@ -6,10 +6,10 @@ class IncomingController < ApplicationController
   def create
     unless params[:sender] == ENV['MAILGUN_SMTP_LOGIN']
       @user = User.find_by(email: params[:sender])
-      create_new_user(@user, sender)
+      create_new_user(@user, params[:sender])
     else
      @user = User.find_by(email: params[:from])
-      create_new_user(@user, from)
+      create_new_user(@user, params[:from])
     end
 
     # Find the topic by using params[:subject]
@@ -25,7 +25,7 @@ class IncomingController < ApplicationController
 
   private
 
-  def create_new_user(user, handle)
+  def create_new_user(user, params[:handle])
     if user.nil?
         user = User.new(email: params[:handle], password: params[:handle])
         user.skip_confirmation!

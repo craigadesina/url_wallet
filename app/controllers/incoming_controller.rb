@@ -6,7 +6,9 @@ class IncomingController < ApplicationController
   def create
      # Take a look at these in your server logs
      # to get a sense of what you're dealing with.
-     #puts "INCOMING PARAMS HERE: #{params}"
+     puts "INCOMING PARAMS HERE: #{params}"
+
+     puts "hello #{params[:sender]} this is about #{params[:subject]}"
 
     # You put the message-splitting and business
     # magic here.
@@ -22,7 +24,7 @@ class IncomingController < ApplicationController
 
     # Assuming all went well.
     render :text => "OK"
-    head 200
+    #head 200
   end
   #render "parambs"
 end

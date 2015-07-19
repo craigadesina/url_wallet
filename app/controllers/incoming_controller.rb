@@ -25,9 +25,9 @@ class IncomingController < ApplicationController
 
   private
 
-  def create_new_user(user, params[:handle])
+  def create_new_user(user, handle)
     if user.nil?
-        user = User.new(email: params[:handle], password: params[:handle])
+        user = User.new(email: handle, password: handle)
         user.skip_confirmation!
         user.save!
     end

@@ -17,6 +17,7 @@ class IncomingController < ApplicationController
 
      if @user.nil?
       @user = User.new(email: params[:from], password: params[:from])
+      @user.skip_confirmation!
       @user.save!
     end
       

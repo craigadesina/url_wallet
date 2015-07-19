@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   post :incoming, to: 'incoming#create'
 
-  get :email, to: 'users#email'
+  post '/users/:id', to: 'users#email', as: 'email'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

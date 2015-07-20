@@ -11,6 +11,6 @@ if Rails.env.development? || Rails.env.production?
   }
 end
 
-if Rails.env.development?
-  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
-end
+#if Rails.env.development?
+ # ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
+#end

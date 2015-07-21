@@ -9,4 +9,5 @@ class UserMailer < ActionMailer::Base
                       :text    => 'http://ginthurb.com/mailgun/mailgun-ruby'}
     mg_client.send_message ENV['DOMAIN'], message_params
   end
+
 end

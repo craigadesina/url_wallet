@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def email
     @user = User.find(params[:id])
     #@user = current_user
-    UserMailer.sample_email(@user).deliver_later
+    UserMailer.sample_email(@user).deliver_now
     redirect_to show
   end
 end

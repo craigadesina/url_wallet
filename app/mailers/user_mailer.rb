@@ -7,6 +7,6 @@ class UserMailer < ActionMailer::Base
                       :to      => 'sorting@app8572295d9f7d4a2ca16a86b732ce74b5.mailgun.org',
                       :subject => 'First Topic. awesome. Testing Mailgun recieving API',
                       :text    => 'http://ginthurb.com/mailgun/mailgun-ruby'}
-    mg_client.send_message ENV['DOMAIN'], message_params
+    mg_client.send_message ENV['MAILGUN_DOMAIN'], message_params
   end
 end

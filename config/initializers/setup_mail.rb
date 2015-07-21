@@ -6,7 +6,7 @@ if Rails.env.development? || Rails.env.production?
     authentication: :plain,
     user_name:      ENV['MAILGUN_SMTP_LOGIN'],
     password:       ENV['MAILGUN_SMTP_PASSWORD'],
-    domain:         ENV['DOMAIN'],
+    domain:         ENV['MAILGUN_DOMAIN'],
     enable_starttls_auto: true
   }
 end
@@ -17,7 +17,7 @@ end
 
 class DevelopmentMailInterceptor
   def self.delivering_email(message)
-    message.to =  "sorting@app8572295d9f7d4a2ca16a86b732ce74b5.mailgun.org"
+    message.to =  "admin@app8572295d9f7d4a2ca16a86b732ce74b5.mailgun.org"
     message.cc = nil
     message.bcc = nil
   end

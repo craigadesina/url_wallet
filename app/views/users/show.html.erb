@@ -1,3 +1,11 @@
 <%= @user.name || @user.email %>, you are welcome!
 
 <%= button_to "send email", email_path(@user) %>
+
+
+<p><strong><%= @user.name || @user.email %>'s topics </strong></p>
+
+<%= render partial: "topics/form", locals: {topic: Topic.new, user: @user} %>
+
+
+<%= render partial: "topics/topic", collection: @topics %>

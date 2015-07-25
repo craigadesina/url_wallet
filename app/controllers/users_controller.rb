@@ -1,16 +1,25 @@
 class UsersController < ApplicationController
 
+  before_action :find_user, only: [:show, :email]
   
+  def index
+
+  end
 
   def show
     @user = User.find(params[:id])
-    #@user = current_user
+    @topics = @user.topics
   end
 
   def email
-    @user = User.find(params[:id])
-    #@user = current_user
     UserMailer.sample_email(@user).deliver_now
     redirect_to show
   end
+
+  private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
 end

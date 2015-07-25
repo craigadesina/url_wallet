@@ -1,0 +1,9 @@
+<%= form_for ([user, topic]) do |f| %>
+
+  <%= f.label :title %>
+
+  <%= f.text_field :title, autofocus: true %>
+
+  <%= f.submit "Create your new topic!" %>
+
+<% end %>

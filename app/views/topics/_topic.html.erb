@@ -1,0 +1,14 @@
+<h5>Created by <%= topic.user.name || topic.user.email %> on <%= topic.created_at %></h> 
+<br>
+<%= link_to topic.title, topic_path(topic) %>
+
+<br>
+
+<%= link_to "delete topic", user_topic_path(topic.user, topic), method: :delete, data: { confirm: "are you sure?" } %>
+
+<h5> Associated awesome Urls </h5>
+
+<%= render partial: "bookmarks/bookmark", collection: topic.bookmarks %>
+<br>
+
+*****************************************************

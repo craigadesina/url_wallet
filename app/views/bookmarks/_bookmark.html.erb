@@ -1,5 +1,5 @@
 <h5>Created by <% bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h> 
 <br>
 
-<%= bookmark.url %>
+<%= link_to bookmark.url, topic_bookmark_path(bookmark.topic, bookmark) %>
 

@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'topics#index'
 
-  resources :topics, only: [:index, :show]
-
   resources :users, only: [:show, :index] do
     resources :topics, except: [:index, :show]
+  end
+
+  resources :topics, only: [:index, :show] do
+    resources :bookmarks, except: [:index]
   end
 
   post :incoming, to: 'incoming#create'

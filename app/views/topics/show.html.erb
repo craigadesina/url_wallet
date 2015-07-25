@@ -1,6 +1,8 @@
 <h1>Topics#show</h1>
 <p><%= @topic.title %></p>
 
+<%= render partial: "bookmarks/form", locals: {topic: @topic, bookmark: Bookmark.new} %>
+
 <%= link_to "edit topic", edit_user_topic_path(@topic.user, @topic) %>
 
 <%= render partial: "bookmarks/bookmark", collection: @topic.bookmarks %>

@@ -1,0 +1,9 @@
+<h1>Bookmarks#show</h1>
+
+<%= @bookmark.url %>
+<br>
+
+<%= link_to "edit bookmark", edit_topic_bookmark_path(@topic, @bookmark) %>
+<br>
+
+<%= link_to "delete bookmark", topic_bookmark_path(@topic, @bookmark), method: :delete, data: { confirm: "are you sure?" } %>

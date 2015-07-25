@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
 
   before_action :set_topic, except: [:new, :create, :index]
+  
   before_action :set_user, except: [:show, :index]
   
   def index

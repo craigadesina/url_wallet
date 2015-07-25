@@ -1,0 +1,9 @@
+<%= form_for ([topic, bookmark]) do |f| %>
+
+  <%= f.label :url %>
+
+  <%= f.url_field :url, autofocus: true %>
+
+  <%= f.submit "Create your new bookmark!" %>
+
+<% end %>

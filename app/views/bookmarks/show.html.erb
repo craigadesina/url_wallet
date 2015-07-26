@@ -7,3 +7,14 @@
 <br>
 
 <%= link_to "delete bookmark", topic_bookmark_path(@topic, @bookmark), method: :delete, data: { confirm: "are you sure?" } %>
+
+<br>
+
+<% if policy(Vote.new).create? %>
+
+  <%= render partial: "votes/vote", locals: {topic: @topic, bookmark: @bookmark} %>
+  <br>
+
+<% end %>
+
+<%= "#{@bookmark.votes.count} likes from #{@bookmark.votes.each do |vote| puts vote.created_at end}" %>

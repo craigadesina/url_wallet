@@ -1,0 +1,9 @@
+<% if bookmark.votes.find_by(user: current_user).nil? %>
+
+  <%= link_to "like bookmark", topic_bookmark_votes_path(topic, bookmark), method: :post %>
+
+<% else %>
+
+  <%= link_to "Un-like bookmark", topic_bookmark_vote_path(topic, bookmark, bookmark.votes.find_by(user: current_user)), method: :delete %>
+
+<% end %>

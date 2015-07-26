@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :topics, only: [:index, :show] do
-    resources :bookmarks, except: [:index]
+    resources :bookmarks, except: [:index] do
+      resources :votes, only: [:create, :destroy]
+    end
   end
 
   post :incoming, to: 'incoming#create'

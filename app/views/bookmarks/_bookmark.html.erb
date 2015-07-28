@@ -1,5 +1,24 @@
-<h5>Created by <% bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h> 
-<br>
+<% if defined?(upvoted_bookmark) && current_user.bookmarks.include?(upvoted_bookmark) %>
 
-<%= link_to bookmark.url, topic_bookmark_path(bookmark.topic, bookmark) %>
+  <h5>Created by <%= upvoted_bookmark.topic.user.name || upvoted_bookmark.topic.user.email %> on <%= upvoted_bookmark.created_at %></h> 
+  <br>
 
+  <%= link_to upvoted_bookmark.url, topic_bookmark_path(upvoted_bookmark.topic, upvoted_bookmark) %>
+
+  <% if policy(Vote.new).create? %>
+
+    <%= render partial: "votes/vote", locals: {topic: upvoted_bookmark.topic, bookmark: upvoted_bookmark} %>
+  <br>
+
+  <% end %>
+
+<% else %>
+
+  <h5>Created by <%= bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h> 
+  <br>
+
+  <%= link_to bookmark.url, topic_bookmark_path(bookmark.topic, bookmark) %>
+
+  <%= link_to "delete bookmark", topic_bookmark_path(bookmark.topic, bookmark), method: :delete, data: { confirm: "Are you sure you want to delete this bookmark?" } %>
+
+<% end %>

@@ -1,9 +1,10 @@
-<%= form_for ([topic, bookmark]) do |f| %>
+<div class="form-inline">
+  <%= form_for ([topic, bookmark]) do |f| %>
+    <div class="form-group">
+      <%= f.label :url %>
 
-  <%= f.label :url %>
-
-  <%= f.url_field :url, autofocus: true %>
-
-  <%= f.submit "Create your new bookmark!" %>
-
-<% end %>
+      <%= f.url_field :url, autofocus: true, class: "form-control" %>
+    </div>
+  <%= f.submit "Create/Edit your bookmark!", class: "btn btn-success" %>
+  <% end %>
+</div>

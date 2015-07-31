@@ -2,14 +2,9 @@ class UsersController < ApplicationController
 
   before_action :find_user, only: [:show, :email]
   
-  def index
-
-  end
-
   def show
-    @user = User.find(params[:id])
     @topics = @user.topics
-    @upvoted_bookmarks = @user.bookmarks
+    @upvoted_bookmarks = @user.bookmarks.paginate(:page => params[:page], :per_page => 6)
   end
 
   def email

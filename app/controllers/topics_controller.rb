@@ -3,9 +3,11 @@ class TopicsController < ApplicationController
   before_action :set_topic, except: [:new, :create, :index]
   
   before_action :set_user, except: [:show, :index]
+
+  skip_before_action :authenticate_user!, only: [:index]
   
   def index
-    @topics = Topic.all
+    @topics = Topic.paginate(:page => params[:page], :per_page => 2)
   end
 
   def show
@@ -13,11 +15,13 @@ class TopicsController < ApplicationController
   end
 
   def new
+    authorize @topic
     @topic = @user.topics.new
   end
 
   def create
     @topic = @user.topics.build(topic_params)
+    authorize @topic
     if @topic.save
       flash[:notice] = "topic was sucessfully created"
       redirect_to @user
@@ -28,10 +32,11 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    
+    authorize @topic
   end
 
   def update
+    authorize @topic
     if @topic.update(topic_params)
       flash[:notice] = "topic was sucessfully updated"
       redirect_to @user
@@ -42,6 +47,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
+    authorize @topic
     if @topic.destroy
       flash[:notice] = "topic was sadly deleted :("
       redirect_to @user

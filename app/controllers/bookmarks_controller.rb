@@ -5,13 +5,16 @@ class BookmarksController < ApplicationController
   before_action :set_topic
 
   def show
+    authorize @bookmark
   end
 
   def new
+    authorize @bookmark
   end
 
   def create
     @bookmark = @topic.bookmarks.build(bookmark_params)
+    authorize @bookmark
     if @bookmark.save
       flash[:notice] = "bookmark was sucessfully created"
       redirect_to @topic
@@ -22,9 +25,11 @@ class BookmarksController < ApplicationController
   end
 
   def edit
+    authorize @bookmark
   end
 
   def update
+    authorize @bookmark
     if @bookmark.update(bookmark_params)
       flash[:notice] = "Thanks! Bookmark was sucessfully updated"
       redirect_to @topic
@@ -35,6 +40,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+    authorize @bookmark
     if @bookmark.destroy
       flash[:notice] = "bookmark was sadly deleted :("
       redirect_to @topic

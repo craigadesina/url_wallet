@@ -1,14 +1,27 @@
-<h5>Created by <%= topic.user.name || topic.user.email %> on <%= topic.created_at %></h> 
-<br>
-<%= link_to topic.title, topic_path(topic) %>
 
-<br>
+<div class="col-xs-6">
+    <div class="thumbnail">
+      <div class="caption">
+        <h5>Created by <%= topic.user.name || topic.user.email %> on <%= topic.created_at %></h5> 
+        <br>
+      </div>
+      <h3>Topic: #<%= link_to topic.title, topic_path(topic) %></h3>
 
-<%= link_to "delete topic", user_topic_path(topic.user, topic), method: :delete, data: { confirm: "Are you sure you want to delete thsi topic??" } %>
-
-<h5> Associated awesome Urls </h5>
-
-<%= render partial: "bookmarks/bookmark", collection: topic.bookmarks %>
-<br>
-
-*****************************************************
+      <br>
+      <% if policy(topic).destroy? %>
+      
+        <div class="btn btn-warning">
+        <%= link_to "delete topic", user_topic_path(topic.user, topic), method: :delete, data: { confirm: "Are you sure you want to delete thsi topic??" } %>
+        </div>
+      <% end %>
+      <div class="caption">
+        <h5> Associated awesome Urls </h5>
+      </div>
+      
+      <div class="row">
+      <%= render partial: "bookmarks/bookmark", collection: topic.bookmarks %>
+      <br>
+      </div>
+      
+  </div>
+</div>

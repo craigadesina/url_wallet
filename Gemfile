@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -12,8 +11,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'devise'
 gem 'pundit'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 gem 'figaro'
 gem 'faker'
+gem 'bootstrap-sass', '~> 3.3.5'
 gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 # gem 'therubyracer', platforms: :ruby
 

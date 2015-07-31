@@ -1,20 +1,24 @@
 <h1>Bookmarks#show</h1>
-
-<%= @bookmark.url %>
+<div class="row">
+  <div class="col-md-6">
+<div class="thumbnail">
+<h4><%= @bookmark.url %></h4>
 <br>
 
-<%= link_to "edit bookmark", edit_topic_bookmark_path(@topic, @bookmark) %>
+<%= link_to "edit bookmark", edit_topic_bookmark_path(@topic, @bookmark), class: "btn btn-success" if policy(@bookmark).edit? %>
+
+<%= link_to "delete bookmark", topic_bookmark_path(@topic, @bookmark), class: "btn btn-warning", method: :delete, data: { confirm: "are you sure?" } if policy(@bookmark).destroy? %><br>
+
 <br>
 
-<%= link_to "delete bookmark", topic_bookmark_path(@topic, @bookmark), method: :delete, data: { confirm: "are you sure?" } %>
-
-<br>
 
 <% if policy(Vote.new).create? %>
 
   <%= render partial: "votes/vote", locals: {topic: @topic, bookmark: @bookmark} %>
-  <br>
-
+  
 <% end %>
 
-<%= "#{@bookmark.votes.count} likes from #{@bookmark.votes.each do |vote| puts vote.created_at end}" %>
+</div>
+</div>
+</div>
+<%= "Up-voted #{pluralize(@bookmark.votes.size,"time")}" %>

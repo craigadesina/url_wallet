@@ -1,3 +1,12 @@
-<h1>Welcome to Url#Wallet!!</h1>
-<h3>Topics#index</h3>
-<%= render partial: "topic", collection: @topics %>
+
+<div class="jumbotron">
+  <h1>Welcome to Url#Wallet!!</h1>
+</div>
+  <div class="caption">
+    <h3>Topics#index</h3>
+  </div>
+  <div class="row">
+    <%= render partial: "topic", collection: @topics %>
+  </div> 
+
+  <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>

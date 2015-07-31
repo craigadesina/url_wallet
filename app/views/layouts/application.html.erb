@@ -6,9 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-    
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  </head>
+</head>
 <body>
 <% if notice %>
   <div class="alert alert-success">
@@ -20,12 +20,23 @@
     </div>
 <% end %>
 
-<% if user_signed_in? %>
-  <li class="active">
+<div id="nav" class="container">
+  <ul class="nav nav-pills">
+
+    <li class="active">
+    <%= link_to "Home", root_path %>
+  </li>
+
+  <% if user_signed_in? %>
+    <li class="active">
     <%= link_to "sign out", destroy_user_session_path, method: :delete %>
   </li>
   <li class="active">
     <%= link_to "Update Details", edit_user_registration_path %>
+  </li>
+
+  <li class="active">
+    <%= link_to "My Bookmarks", user_path(current_user) %>
   </li>
 
 <% else %>
@@ -36,9 +47,14 @@
     <%= link_to "Register", new_user_registration_path %>
   </li>
 <% end %>
+</ul>
 </div>
 
-<%= yield %>
+<div class="container">
+
+  <%= yield %>
+
+</div>
 
 </body>
 </html>

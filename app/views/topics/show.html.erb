@@ -3,7 +3,8 @@
 
 <%= render partial: "bookmarks/form", locals: {topic: @topic, bookmark: Bookmark.new} %>
 
-<%= link_to "edit topic", edit_user_topic_path(@topic.user, @topic) %>
+<%= link_to "edit topic", edit_user_topic_path(@topic.user, @topic) if policy(@topic).edit? %>
+
 
 <p> Bookmarks you have Created </p>
 

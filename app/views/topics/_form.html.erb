@@ -1,9 +1,11 @@
-<%= form_for ([user, topic]) do |f| %>
+<div class="form-inline">
+  <%= form_for ([user, topic]) do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
 
-  <%= f.label :title %>
-
-  <%= f.text_field :title, autofocus: true %>
-
-  <%= f.submit "Create your new topic!" %>
-
-<% end %>
+      <%= f.text_field :title, autofocus: true, class: "form-control" %>
+    </div>
+  
+  <%= f.submit "Create/Edit your topic!", class: "btn btn-success" %>
+  <% end %>
+</div>

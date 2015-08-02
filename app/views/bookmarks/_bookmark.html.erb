@@ -1,9 +1,7 @@
 
 <div class="col-xs-4">
   <div class="thumbnail">
-
     <% if defined?(upvoted_bookmark) && current_user.bookmarks.include?(upvoted_bookmark) %>
-
       <div class="panel panel-danger">
         <div class="panel-heading">
           <div class="caption">
@@ -13,30 +11,20 @@
           <div id="bkmak_url">
             <%= link_to upvoted_bookmark.url, topic_bookmark_path(upvoted_bookmark.topic, upvoted_bookmark) %>
           </div>
-
-    
           <% if policy(Vote.new).create? %>
-
             <%= render partial: "votes/vote", locals: {topic: upvoted_bookmark.topic, bookmark: upvoted_bookmark} %>
             <br>
           <% end %>
         </div>
       </div>
-      
-
     <% else %>
-    
       <div class="caption">
         <h5>Created by <%= bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h5> <br>
       </div>
-    
       <div id="bkmak_url" class="btn btn-default btn-xs active">
-      
         <%= link_to bookmark.url, topic_bookmark_path(bookmark.topic, bookmark) %>
       </div>
-    
       <% if policy(bookmark).destroy? %>
-    
         <div class="btn btn-primary btn-md active btn-block">
           <%= link_to "delete bookmark", topic_bookmark_path(bookmark.topic, bookmark), method: :delete, data: { confirm: "Are you sure you want to delete this bookmark?" } %>
         </div>

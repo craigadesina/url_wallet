@@ -1,13 +1,9 @@
 <% if bookmark.votes.find_by(user: current_user).nil? %>
-
-    <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">
-      <%= link_to "Like-bookmark", topic_bookmark_votes_path(topic, bookmark), method: :post, class: "glyphicon glyphicon-star"%> 
-    </button>
-
+  <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+    <%= link_to "Like-bookmark", topic_bookmark_votes_path(topic, bookmark), method: :post, class: "glyphicon glyphicon-star"%> 
+  </button>
 <% else %>
-  
-    <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">
-      <%= link_to "Unlike-bookmark", topic_bookmark_vote_path(topic, bookmark, bookmark.votes.find_by(user: current_user)), method: :delete, class: "glyphicon glyphicon-star-empty" %>
+  <button type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+    <%= link_to "Unlike-bookmark", topic_bookmark_vote_path(topic, bookmark, bookmark.votes.find_by(user: current_user)), method: :delete, class: "glyphicon glyphicon-star-empty" %>
     </button>
-
 <% end %>

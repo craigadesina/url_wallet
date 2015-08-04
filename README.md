@@ -22,4 +22,6 @@ Url-Wallet is a app for sharing bookmarks and urls with your frinds and associat
     # I shall complete the rest of the features soon and maybe even expand on them.
     > Ability to notify a new user to check their email upon account creation (non devise)
     > Functionality to send an email copy of an topic or bookmark to friends or associates you specify.
-    > If you have any further suggestions, they are welcome!
+    > If you have any further suggestions, they are welcome. Thanks
+
+    >ps: If some of the features described are not yet functional by the time you use this app, please bear with me. I am still implementin them and will make sure they are all up and runing smoothly as soon as possible.

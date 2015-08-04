@@ -21,8 +21,7 @@
     </div> 
     <div class="row">
       <%= render partial: "bookmarks/bookmark", collection: @upvoted_bookmarks, as: :upvoted_bookmark %>
-      <br> 
-      </div>
+    </div>
 
       <%= will_paginate @upvoted_bookmarks, renderer: BootstrapPagination::Rails%>
   </div>

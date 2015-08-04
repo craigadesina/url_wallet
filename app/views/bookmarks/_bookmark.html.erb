@@ -6,9 +6,8 @@
         <div class="panel-heading">
           <div class="caption">
             <h5>Created by <%= upvoted_bookmark.topic.user.name || upvoted_bookmark.topic.user.email %> on <%= upvoted_bookmark.created_at %></h5> 
-            <br>
           </div>
-          <div id="bkmak_url">
+          <div id="bkmak_url" class="panel">
             <%= link_to upvoted_bookmark.url, topic_bookmark_path(upvoted_bookmark.topic, upvoted_bookmark) %>
           </div>
           <% if policy(Vote.new).create? %>
@@ -18,8 +17,8 @@
         </div>
       </div>
     <% else %>
-      <div class="caption">
-        <h5>Created by <%= bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h5> <br>
+      <div id="bkmak_url" class="caption">
+        <h5>Created by <%= bookmark.topic.user.name || bookmark.topic.user.email %> on <%= bookmark.created_at %></h5>
       </div>
       <div id="bkmak_url" class="btn btn-default btn-xs active">
         <%= link_to bookmark.url, topic_bookmark_path(bookmark.topic, bookmark) %>

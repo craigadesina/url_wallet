@@ -12,7 +12,6 @@
           </div>
           <% if policy(Vote.new).create? %>
             <%= render partial: "votes/vote", locals: {topic: upvoted_bookmark.topic, bookmark: upvoted_bookmark} %>
-            <br>
           <% end %>
         </div>
       </div>
